@@ -1,0 +1,92 @@
+
+<div class="container vh-100">
+  <div class="row justify-content-center align-items-center h-100">
+  <div class="col-12 border vh-15">
+    <div class="row justify-content-start mt-2">
+      <div class='col-md-2'>
+        <button class="btn btn-success btn-w" (click)="onSave()">Save</button>
+      </div>
+      <div class='col-md-2'>
+        <button class="btn btn-danger btn-w" (click)="removeAll()">Delete</button>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class='col-md-2'>
+        <button class="btn btn-info btn-w" (click)="addText()" > Text</button>
+      </div>
+      <div class='col-md-2'>
+        <button class="btn btn-info btn-w" (click)="addBarcode()">Barcode</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-12  p-0  vh-70 ">
+    <div class="main-area">   
+   <div id="design-area"  [style.top.px]='this.shaps[0].y'  style="position: relative;"  
+    class=" border d-flex justify-content-center align-items-center"
+    [style.left.px]='this.shaps[0].x' 
+    [style.width.px]='this.shaps[0].width'
+    [style.height.px]='this.shaps[0].height'
+   >
+    <div (mousedown)='onCornerClick($event,0,topLeftResize)' id='barcode-top-left-resize' 
+    class='barcode-corner-resize'></div>
+    <div (mousedown)='onCornerClick($event,0, topRightResize )' id='barcode-top-right-resize' 
+    class='barcode-corner-resize'></div>
+    <div (mousedown)='onCornerClick($event, 0,bottomLeftResize )' id='barcode-bottom-left-resize' 
+    class='barcode-corner-resize'></div>
+    <div (mousedown)='onCornerClick($event, 0,bottomRightResize )' id='barcode-bottom-right-resize'
+     class='barcode-corner-resize'></div>
+
+     <div *ngFor='let shap of shaps ; let i=index'>
+         <div *ngIf='shap.shapeName == "B"'>
+         <div id='barcode'class=" d-flex justify-content-center align-items-center"
+         [style.top.px]='this.shaps[i].y'  
+        [style.left.px]='this.shaps[i].x' 
+        [style.width.px]='this.shaps[i].width'
+        [style.height.px]='this.shaps[i].height'
+        (mousedown)='onWindowPress($event  ,i)'
+        (mousemove)='onWindowDrag($event ,i)'>
+        <div *ngIf="!!this.shaps[i].isfocase ">       
+        <div (mousedown)='onCornerClick($event,i,topLeftResize )' id='barcode-top-left-resize' 
+        class='barcode-corner-resize'></div>
+        <div (mousedown)='onCornerClick($event,i,topRightResize )' id='barcode-top-right-resize' 
+        class='barcode-corner-resize'></div>
+        <div (mousedown)='onCornerClick($event,i,bottomLeftResize )' id='barcode-bottom-left-resize' 
+        class='barcode-corner-resize'></div>
+        <div (mousedown)='onCornerClick($event,i, bottomRightResize )' id='barcode-bottom-right-resize'
+         class='barcode-corner-resize'></div>
+        </div>
+         <ngx-barcode [bc-width]="this.shaps[i].width/90" [bc-height]="this.shaps[i].height-20" [bc-font-size]="Bheight/10 + Bwidth/10" 
+         [bc-value]="12356" [bc-display-value]="false" class="bar-size">       
+        </ngx-barcode> 
+
+        </div>
+      </div>
+      <div *ngIf='shap.shapeName == "T"'>
+        <div id='text' [style.top.px]='this.shaps[i].y' 
+          class=" d-flex justify-content-center align-items-center"
+       [style.left.px]='this.shaps[i].x' 
+       [style.width.px]='this.shaps[i].width'
+       [style.height.px]='this.shaps[i].height'
+       (mousedown)='onWindowPress($event  ,i)'
+       (mousemove)='onWindowDrag($event ,i)'>
+       <div *ngIf="!!this.shaps[i].isfocase ">  
+       <div (mousedown)='onCornerClick($event ,i,topLeftResize)' id='barcode-top-left-resize' 
+       class='barcode-corner-resize'></div>
+       <div (mousedown)='onCornerClick($event,i, topRightResize )' id='barcode-top-right-resize' 
+       class='barcode-corner-resize'></div>
+       <div (mousedown)='onCornerClick($event,i,bottomLeftResize )' id='barcode-bottom-left-resize' 
+       class='barcode-corner-resize'></div>
+       <div (mousedown)='onCornerClick($event,i,bottomRightResize )' id='barcode-bottom-right-resize'
+        class='barcode-corner-resize'></div>
+        </div>
+        <input type="text" class="form-control text-center border-0" 
+        [style.font-size.px] ="this.shaps[i].width/10 + this.shaps[i].height /100" 
+        placeholder="abc" [value]="value"  [(ngModel)]="value" name="name">
+
+       </div>
+       </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

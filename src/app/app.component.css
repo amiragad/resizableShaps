@@ -1,0 +1,30 @@
+#design-area{
+    position: relative;
+} 
+#barcode {
+    position: absolute;
+    opacity: 0.8;
+}   
+#text {
+    position: absolute;
+    opacity: 0.8;
+}  
+ 
+
+#barcode-top-left-resize { top: -5px; left: -5px; }
+#barcode-top-right-resize { top: -5px; right: -5px; }
+#barcode-bottom-left-resize { bottom: -5px; left: -5px; }
+#barcode-bottom-right-resize { bottom: -5px; right: -5px; }
+.barcode-corner-resize{
+    position: absolute; width:5px; height: 5px; background:#073082 ;
+}
+.vh-100{
+    height: 100vh;
+}
+.vh-15{
+    height: 15vh;
+}
+.vh-70{
+    height: 70vh;
+}
+.btn-w{width: 100px;}
